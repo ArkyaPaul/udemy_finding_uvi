@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Project</title>
+    <link rel="stylesheet" href="/styles/main.css">
+</head>
+<body>
+    <div class="mainPart">
+        <h3>The UV index (UVI) is a measurement of the level of ultraviolet (UV) radiation, and it affects your skin and eyes. The higher the UVI, the greater the potential for damage to the skin and eye, and the less time it takes for harm to occur.</h3>
+        <h2>Find out the UV Index in your area 👇</h2>
+        <form action="/uvIndex" method="post">
+            <label for="areaInput">Enter you Area:</label>
+            <input type="text" id="areaInput" name="areaInput">
+            <button type="submit">Go</button>
+        </form>
+        <div>
+            <%  
+                let classType;
+                if(locals.uvi>0 && locals.uvi<=2){
+                    classType="low";
+                }else if(locals.uvi>2 && locals.uvi<=5){
+                    classType="moderate";
+                }else if(locals.uvi>5 && locals.uvi<=7){
+                    classType="high";
+                }else if(locals.uvi>7 && locals.uvi<=10){
+                    classType="very_high";
+                }else if(locals.uvi>10){
+                    classType="extreme";
+                }
+            %>
+            <% if (locals.area) { %>
+                <h2>The UV Index in <%= area %> is <span class="<%= classType %>"><%= uvi %></span></h2>
+            <% } %>
+            <% if (classType==='low') { %>
+                <h4 class="low">You can safely stay outside using standard daily sun protection: broad spectrum SPF 30+ sunscreen containing zinc, sunglasses, and hat. Don't forget: in winter, reflection off snow can nearly double UV strength.</h4>
+            <% }else if (classType==='moderate') { %>
+                <h4 class="moderate">Stay in the shade during late morning through mid-afternoon. Wear broad spectrum SPF 30+ sunscreen containing zinc, sunglasses, and hat.</h4>
+            <% }else if(classType==='high'){ %>
+                <h4 class="high">Stay in the shade as much as possible, especially during late morning through mid-afternoon. Wear broad spectrum SPF 30+ sunscreen containing zinc, protective clothing (long-sleeved shirt and pants), sunglasses, and wide-brimmed hat.</h4>
+            <% }else if(classType==='very_high'){ %>
+                <h4 class="very_high">Extra protection needed. Be careful outside, especially during late morning through mid-afternoon. Stay in the shade as much as possible, especially during late morning through mid-afternoon. Wear broad spectrum SPF 30+ sunscreen containing zinc, protective clothing (long-sleeved shirt and pants), sunglasses, and wide-brimmed hat. Please note: white sand on the beach will reflect UV rays and can double UV exposure.</h4>
+            <% }else if(classType==='extreme'){ %>
+                <h4 class="extreme">Extra protection needed. Avoid sun exposure during late morning through mid-afternoon. Unprotected skin and eyes can burn in minutes. Wear broad spectrum SPF 30+ sunscreen containing zinc, protective clothing (like long-sleeves), sunglasses, and wide-brimmed hat. Please note: white sand on the beach will reflect UV rays and can double UV exposure.</h4>
+            <% } %>
+        </div>   
+    </div>  
+</body>
+</html>

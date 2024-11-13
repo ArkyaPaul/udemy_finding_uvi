@@ -1,0 +1,28 @@
+.mainPart{
+    display: grid;
+    justify-items: center;
+}
+h3{
+    text-align: center;
+}
+h4{
+    text-align: center;
+}
+h2{
+    text-align: center;
+}
+.low{
+    color: green;
+}
+.moderate{
+    color: yellow;
+}
+.high{
+    color: orange;
+}
+.very_high{
+    color: red;
+}
+.extreme{
+    color: violet;
+}
